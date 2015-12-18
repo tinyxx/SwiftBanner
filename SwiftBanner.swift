@@ -11,7 +11,7 @@ import UIKit
 // MARK: - BannerItem
 public struct BannerItem
 {
-    public let image: UIImage
+    public let imageFetcher: ((UIImageView) -> UIImage?)
     public let action: (() -> ())?
 }
 
@@ -52,7 +52,7 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
     public var direction = AutoScrollDirection.Right
     
     // MARK: - private var
-    private static var onceTicken: dispatch_once_t = 0
+    private var onceTicken: dispatch_once_t = 0
     private let scrollView = UIScrollView()
     private var timer: NSTimer?
     private var currentIndex: Int{
@@ -76,6 +76,8 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
     {
         super.layoutSubviews()
         self.updateSubViews(self.bannerItems)
+        // against navigation viewcontroller adjust scrollview inset
+        self.scrollView.contentInset = UIEdgeInsetsZero
     }
     
     // MARK: - UIScrollViewDelegate
@@ -106,13 +108,16 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
         {
             return
         }
-        
+
         for (index, item) in bannerItems.enumerate()
         {
             let itemView = UIControl(frame: CGRectMake(CGFloat(index) * self.frame.size.width, 0, self.frame.size.width, self.frame.size.height))
-            itemView.backgroundColor = UIColor(patternImage: item.image)
             itemView.tag = index
             itemView.addTarget(self, action: Selector("hitAction:"), forControlEvents: .TouchUpInside)
+            
+            let imageView = UIImageView(frame: CGRectMake(0, 0, itemView.frame.size.width, itemView.frame.size.height))
+            imageView.image = item.imageFetcher(imageView)
+            itemView.addSubview(imageView)
             
             self.scrollView.addSubview(itemView)
         }
@@ -123,7 +128,11 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
                 
                 let firstItem = self.bannerItems[1]
                 let itemView = UIControl(frame: CGRectMake(-self.frame.size.width, 0, self.frame.size.width, self.frame.size.height))
-                itemView.backgroundColor = UIColor(patternImage: firstItem.image)
+                
+                let imageView = UIImageView(frame: CGRectMake(0, 0, itemView.frame.size.width, itemView.frame.size.height))
+                imageView.image = firstItem.imageFetcher(imageView)
+                itemView.addSubview(imageView)
+                
                 return itemView
                 }())
             
@@ -131,7 +140,11 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
                 
                 let lastItem = self.bannerItems[self.bannerItems.count - 2]
                 let itemView = UIControl(frame: CGRectMake(CGFloat(self.bannerItems.count) * self.frame.size.width, 0, self.frame.size.width, self.frame.size.height))
-                itemView.backgroundColor = UIColor(patternImage: lastItem.image)
+                
+                let imageView = UIImageView(frame: CGRectMake(0, 0, itemView.frame.size.width, itemView.frame.size.height))
+                imageView.image = lastItem.imageFetcher(imageView)
+                itemView.addSubview(imageView)
+                
                 return itemView
                 }())
         }
@@ -142,7 +155,7 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
         
         self.fireTimer()
         
-        dispatch_once(&SwiftBanner.onceTicken, {
+        dispatch_once(&self.onceTicken, {
             self.scrollView.pagingEnabled = true
             self.scrollView.delegate = self
             

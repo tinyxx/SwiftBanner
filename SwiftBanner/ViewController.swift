@@ -10,20 +10,32 @@ import UIKit
 
 class ViewController: UIViewController
 {
-    @IBOutlet weak var banner: SwiftBanner!
+    @IBOutlet weak var bannerTop: SwiftBanner!
+    let warningStr = "Be careful block cycle retain"
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-//        self.banner.frame = CGRectMake(0, 0, 320, 160)
-        self.banner.bannerItems = [BannerItem(image: UIImage(named: "mc1")!, action: {
-            print("1111 press")
-        }), BannerItem(image: UIImage(named: "mc2")!, action: {
-            print("2222 press")
-        })]
-        self.banner.direction = .Left
+//        weak var weakSelf = self
+        
+        // BannerTop
+        self.bannerTop.bannerItems = [BannerItem(imageFetcher: {(imageView) in
+
+            return UIImage(named: "mc1")!
+            }, action: {
+            print("banner1 press")
+        }),
+            BannerItem(imageFetcher: {_ in 
+                return UIImage(named: "mc2")!
+                }, action: {
+                    print("banner2 press")
+            })
+        ]
+        
+        self.bannerTop.direction = .Left
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,6 +43,9 @@ class ViewController: UIViewController
         // Dispose of any resources that can be recreated.
     }
 
-
+    deinit
+    {
+        print("ViewController deinit")
+    }
 }
 
