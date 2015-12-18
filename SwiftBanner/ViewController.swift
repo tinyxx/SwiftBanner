@@ -17,12 +17,13 @@ class ViewController: UIViewController
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.banner.frame = CGRectMake(0, 0, 320, 160)
+//        self.banner.frame = CGRectMake(0, 0, 320, 160)
         self.banner.bannerItems = [BannerItem(image: UIImage(named: "mc1")!, action: {
             print("1111 press")
         }), BannerItem(image: UIImage(named: "mc2")!, action: {
             print("2222 press")
         })]
+        self.banner.direction = .Left
     }
 
     override func didReceiveMemoryWarning() {

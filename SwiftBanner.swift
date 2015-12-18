@@ -18,6 +18,7 @@ public struct BannerItem
 // MARK: - Direction enum
 public enum AutoScrollDirection
 {
+    case None
     case Left
     case Right
 }
@@ -71,6 +72,12 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
         self.timer = nil
     }
     
+    public override func layoutSubviews()
+    {
+        super.layoutSubviews()
+        self.updateSubViews(self.bannerItems)
+    }
+    
     // MARK: - UIScrollViewDelegate
     public func scrollViewWillBeginDragging(scrollView: UIScrollView)
     {
@@ -95,7 +102,7 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
             view.removeFromSuperview()
         }
         
-        if bannerItems.count == 0
+        if bannerItems.count < 1
         {
             return
         }
@@ -129,14 +136,15 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
                 }())
         }
         
+        self.scrollView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
         self.scrollView.contentSize = CGSizeMake(CGFloat(bannerItems.count) * self.frame.size.width, self.frame.size.height)
+        self.currentIndex = 1
+        
         self.fireTimer()
         
         dispatch_once(&SwiftBanner.onceTicken, {
             self.scrollView.pagingEnabled = true
-            self.scrollView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
             self.scrollView.delegate = self
-            self.currentIndex = 1
             
             self.addSubview(self.scrollView)
         })
@@ -175,17 +183,17 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
     // auto Scroll
     @objc private func autoScroll()
     {
-        var x = CGFloat(0)
         switch self.direction
         {
+        case .None:
+            break
+            
         case .Left:
-            x = self.scrollView.contentOffset.x - self.frame.size.width
+            self.scrollView.setContentOffset(CGPoint(x: self.scrollView.contentOffset.x - self.frame.size.width, y: 0), animated: true)
             
         case .Right:
-            x = self.scrollView.contentOffset.x + self.frame.size.width
+            self.scrollView.setContentOffset(CGPoint(x: self.scrollView.contentOffset.x + self.frame.size.width, y: 0), animated: true)
         }
-        
-        self.scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: true)
     }
     
     // endless Scroll
