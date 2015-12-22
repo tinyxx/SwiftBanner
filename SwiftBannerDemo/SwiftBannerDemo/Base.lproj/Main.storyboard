@@ -24,15 +24,26 @@
                                     <constraint firstAttribute="height" constant="160" id="0fB-Jt-4bj"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uI1-Gj-25t" customClass="SwiftBanner" customModule="SwiftBannerDemo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="180" width="600" height="160"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="WaU-rH-TTS"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="uI1-Gj-25t" secondAttribute="trailing" id="2bx-ij-jms"/>
                             <constraint firstItem="7Vn-CL-dc1" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="IOJ-dM-nSi"/>
+                            <constraint firstItem="uI1-Gj-25t" firstAttribute="top" secondItem="7Vn-CL-dc1" secondAttribute="bottom" id="L2J-LL-150"/>
                             <constraint firstAttribute="trailing" secondItem="7Vn-CL-dc1" secondAttribute="trailing" id="Zdy-84-Qss"/>
                             <constraint firstItem="7Vn-CL-dc1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="i45-Ic-Z4a"/>
+                            <constraint firstItem="uI1-Gj-25t" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yg6-lz-VFb"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bannerMiddle" destination="uI1-Gj-25t" id="YsA-Yg-6MF"/>
                         <outlet property="bannerTop" destination="7Vn-CL-dc1" id="Ahh-9L-rOd"/>
                     </connections>
                 </viewController>

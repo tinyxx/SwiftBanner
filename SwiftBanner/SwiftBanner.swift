@@ -49,7 +49,7 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
         }
     }
     
-    public var direction = AutoScrollDirection.Right
+    public var autoScrollDirection = AutoScrollDirection.Right
     
     // MARK: - private var
     private var onceTicken: dispatch_once_t = 0
@@ -111,15 +111,24 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
 
         for (index, item) in bannerItems.enumerate()
         {
-            let itemView = UIControl(frame: CGRectMake(CGFloat(index) * self.frame.size.width, 0, self.frame.size.width, self.frame.size.height))
-            itemView.tag = index
-            itemView.addTarget(self, action: Selector("hitAction:"), forControlEvents: .TouchUpInside)
-            
-            let imageView = UIImageView(frame: CGRectMake(0, 0, itemView.frame.size.width, itemView.frame.size.height))
-            imageView.image = item.imageFetcher(imageView)
-            itemView.addSubview(imageView)
-            
-            self.scrollView.addSubview(itemView)
+            self.scrollView.addSubview({
+                
+                let itemView = UIControl(frame: CGRectMake(CGFloat(index) * self.frame.size.width, 0, self.frame.size.width, self.frame.size.height))
+                itemView.tag = index
+                itemView.addTarget(self, action: Selector("hitAction:"), forControlEvents: .TouchUpInside)
+                
+                itemView.addSubview({
+                    
+                    let imageView = UIImageView(frame: CGRectMake(0, 0, itemView.frame.size.width, itemView.frame.size.height))
+                    dispatch_async_main_queue({
+                        imageView.image = item.imageFetcher(imageView)
+                    })
+                    
+                    return imageView
+                }())
+                
+                return itemView
+            }())
         }
         
         if self.bannerItems.count > 1
@@ -128,10 +137,15 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
                 
                 let firstItem = self.bannerItems[1]
                 let itemView = UIControl(frame: CGRectMake(-self.frame.size.width, 0, self.frame.size.width, self.frame.size.height))
-                
-                let imageView = UIImageView(frame: CGRectMake(0, 0, itemView.frame.size.width, itemView.frame.size.height))
-                imageView.image = firstItem.imageFetcher(imageView)
-                itemView.addSubview(imageView)
+                itemView.addSubview({
+                    
+                    let imageView = UIImageView(frame: CGRectMake(0, 0, itemView.frame.size.width, itemView.frame.size.height))
+                    dispatch_async_main_queue({
+                        imageView.image = firstItem.imageFetcher(imageView)
+                    })
+                    
+                    return imageView
+                }())
                 
                 return itemView
                 }())
@@ -140,10 +154,15 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
                 
                 let lastItem = self.bannerItems[self.bannerItems.count - 2]
                 let itemView = UIControl(frame: CGRectMake(CGFloat(self.bannerItems.count) * self.frame.size.width, 0, self.frame.size.width, self.frame.size.height))
-                
-                let imageView = UIImageView(frame: CGRectMake(0, 0, itemView.frame.size.width, itemView.frame.size.height))
-                imageView.image = lastItem.imageFetcher(imageView)
-                itemView.addSubview(imageView)
+                itemView.addSubview({
+                    
+                    let imageView = UIImageView(frame: CGRectMake(0, 0, itemView.frame.size.width, itemView.frame.size.height))
+                    dispatch_async_main_queue({
+                        imageView.image = lastItem.imageFetcher(imageView)
+                    })
+                    
+                    return imageView
+                }())
                 
                 return itemView
                 }())
@@ -196,7 +215,7 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
     // auto Scroll
     @objc private func autoScroll()
     {
-        switch self.direction
+        switch self.autoScrollDirection
         {
         case .None:
             break
@@ -225,6 +244,19 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
             
             self.refrushTimer()
         }
+    }
+}
+
+// MARK: - dispatch_async_main_queue
+func dispatch_async_main_queue(block: dispatch_block_t)
+{
+    if NSThread.isMainThread()
+    {
+        block()
+    }
+    else
+    {
+        dispatch_async(dispatch_get_main_queue(), block)
     }
 }
 
