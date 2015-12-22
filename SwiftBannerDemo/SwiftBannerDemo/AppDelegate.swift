@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  SwiftBanner
+//  SwiftBannerDemo
 //
-//  Created by HongPu on 2015/12/17.
+//  Created by HongPu on 2015/12/22.
 //  Copyright © 2015年 tinyxx. All rights reserved.
 //
 
