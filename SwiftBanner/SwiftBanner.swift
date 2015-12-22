@@ -196,7 +196,8 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
         self.timer?.invalidate()
         self.timer = nil
         
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(self.timeInterval), target: WeakTarget(target: self).target!, selector: Selector("autoScroll"), userInfo: nil, repeats: true)
+        self.timer = NSTimer(timeInterval: NSTimeInterval(self.timeInterval), target: WeakTarget(target: self).target!, selector: Selector("autoScroll"), userInfo: nil, repeats: true)
+        NSRunLoop.mainRunLoop().addTimer(self.timer!, forMode: NSRunLoopCommonModes)
     }
     
     private func stopTimer()
