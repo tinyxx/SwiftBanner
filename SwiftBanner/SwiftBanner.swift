@@ -131,11 +131,11 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
             }())
         }
         
-        if self.bannerItems.count > 1
+        if self.bannerItems.count > 3
         {
             self.scrollView.addSubview({
                 
-                let firstItem = self.bannerItems[1]
+                let firstItem = self.bannerItems[self.bannerItems.count - 3]
                 let itemView = UIControl(frame: CGRectMake(-self.frame.size.width, 0, self.frame.size.width, self.frame.size.height))
                 itemView.addSubview({
                     
@@ -152,7 +152,7 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
             
             self.scrollView.addSubview({
                 
-                let lastItem = self.bannerItems[self.bannerItems.count - 2]
+                let lastItem = self.bannerItems[2]
                 let itemView = UIControl(frame: CGRectMake(CGFloat(self.bannerItems.count) * self.frame.size.width, 0, self.frame.size.width, self.frame.size.height))
                 itemView.addSubview({
                     
@@ -177,6 +177,8 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
         dispatch_once(&self.onceTicken, {
             self.scrollView.pagingEnabled = true
             self.scrollView.delegate = self
+            self.scrollView.showsHorizontalScrollIndicator = false
+            self.scrollView.showsVerticalScrollIndicator = false
             
             self.addSubview(self.scrollView)
         })
