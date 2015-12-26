@@ -15,12 +15,20 @@ public struct BannerItem
     public let action: (() -> ())?
 }
 
-// MARK: - Direction enum
+// MARK: - enum
 public enum AutoScrollDirection
 {
     case None
     case Left
     case Right
+}
+
+public enum PageControlPosition
+{
+    case None
+    case Left
+    case Right
+    case Middle
 }
 
 // MARK: - SwiftBanner
@@ -50,10 +58,12 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
     }
     
     public var autoScrollDirection = AutoScrollDirection.Right
+    public var pageControlPosition = PageControlPosition.Middle
     
     // MARK: - private var
     private var onceTicken: dispatch_once_t = 0
     private let scrollView = UIScrollView()
+    private let pageControl = UIPageControl()
     private var timer: NSTimer?
     private var currentIndex: Int{
         get{
@@ -89,26 +99,47 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
     public func scrollViewDidEndDecelerating(scrollView: UIScrollView)
     {
         self.checkScrollBorder()
+        self.updatePageControlHint()
     }
     
     public func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView)
     {
         self.checkScrollBorder()
+        self.updatePageControlHint()
     }
     
     // MARK: - private method
     private func updateSubViews(bannerItems: [BannerItem])
+    {
+        if bannerItems.count < 1
+        {
+            return
+        }
+
+        self.updateScrollView(bannerItems)
+        self.updatePageControl(bannerItems)
+        
+        self.currentIndex = 1
+        self.fireTimer()
+        
+        dispatch_once(&self.onceTicken, {
+            self.scrollView.pagingEnabled = true
+            self.scrollView.delegate = self
+            self.scrollView.showsHorizontalScrollIndicator = false
+            self.scrollView.showsVerticalScrollIndicator = false
+            
+            self.addSubview(self.scrollView)
+            self.addSubview(self.pageControl)
+        })
+    }
+    
+    private func updateScrollView(bannerItems: [BannerItem])
     {
         for view in self.scrollView.subviews
         {
             view.removeFromSuperview()
         }
         
-        if bannerItems.count < 1
-        {
-            return
-        }
-
         for (index, item) in bannerItems.enumerate()
         {
             self.scrollView.addSubview({
@@ -125,10 +156,10 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
                     })
                     
                     return imageView
-                }())
+                    }())
                 
                 return itemView
-            }())
+                }())
         }
         
         if self.bannerItems.count > 3
@@ -145,7 +176,7 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
                     })
                     
                     return imageView
-                }())
+                    }())
                 
                 return itemView
                 }())
@@ -162,7 +193,7 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
                     })
                     
                     return imageView
-                }())
+                    }())
                 
                 return itemView
                 }())
@@ -170,18 +201,56 @@ public class SwiftBanner: UIView, UIScrollViewDelegate
         
         self.scrollView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
         self.scrollView.contentSize = CGSizeMake(CGFloat(bannerItems.count) * self.frame.size.width, self.frame.size.height)
-        self.currentIndex = 1
+    }
+    
+    private func updatePageControl(bannerItems: [BannerItem])
+    {
+        if bannerItems.count > 2
+        {
+            self.pageControl.numberOfPages = bannerItems.count - 2
+        }
+        else
+        {
+            self.pageControl.numberOfPages = bannerItems.count
+        }
         
-        self.fireTimer()
+        let marginX: CGFloat = 10
         
-        dispatch_once(&self.onceTicken, {
-            self.scrollView.pagingEnabled = true
-            self.scrollView.delegate = self
-            self.scrollView.showsHorizontalScrollIndicator = false
-            self.scrollView.showsVerticalScrollIndicator = false
+        let marginY: CGFloat = -6
+        let size = self.pageControl.sizeForNumberOfPages(self.pageControl.numberOfPages)
+        
+        var x: CGFloat = 0
+        switch self.pageControlPosition
+        {
+        case .None:
+            self.pageControl.hidden = true
             
-            self.addSubview(self.scrollView)
-        })
+        case .Left:
+            x = marginX
+            self.pageControl.hidden = false
+            
+        case .Right:
+            x = self.frame.size.width - size.width - marginX
+            self.pageControl.hidden = false
+          
+        case .Middle:
+            x = (self.frame.size.width - size.width) / 2
+            self.pageControl.hidden = false
+        }
+        
+        self.pageControl.frame = CGRectMake(x, self.frame.size.height - marginY - size.height, size.width, size.height)
+    }
+    
+    private func updatePageControlHint()
+    {
+        if self.bannerItems.count < 2
+        {
+            self.pageControl.currentPage = self.currentIndex
+        }
+        else
+        {
+            self.pageControl.currentPage = self.currentIndex - 1
+        }
     }
     
     @objc private func hitAction(sender: AnyObject)

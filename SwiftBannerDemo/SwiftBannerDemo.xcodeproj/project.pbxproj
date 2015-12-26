@@ -40,6 +40,7 @@
 		297192601C2970F400F681B6 = {
 			isa = PBXGroup;
 			children = (
+				2971927E1C29711A00F681B6 /* SwiftBanner */,
 				2971926B1C2970F400F681B6 /* SwiftBannerDemo */,
 				2971926A1C2970F400F681B6 /* Products */,
 			);
@@ -56,7 +57,6 @@
 		2971926B1C2970F400F681B6 /* SwiftBannerDemo */ = {
 			isa = PBXGroup;
 			children = (
-				2971927E1C29711A00F681B6 /* SwiftBanner */,
 				2971926C1C2970F400F681B6 /* AppDelegate.swift */,
 				2971926E1C2970F400F681B6 /* ViewController.swift */,
 				297192701C2970F400F681B6 /* Main.storyboard */,
@@ -73,6 +73,7 @@
 				2971927F1C29712800F681B6 /* SwiftBanner.swift */,
 			);
 			name = SwiftBanner;
+			path = SwiftBannerDemo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +261,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SwiftBannerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tinyxx.SwiftBannerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -271,6 +273,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SwiftBannerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tinyxx.SwiftBannerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -296,6 +299,7 @@
 				2971927D1C2970F400F681B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

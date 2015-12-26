@@ -37,6 +37,7 @@ class ViewController: UIViewController
         
         self.bannerTop.timeInterval         = 2.8
         self.bannerTop.autoScrollDirection  = .Left
+        self.bannerTop.pageControlPosition  = .Left
         
         // BannerMiddle
         weak var weakSelf = self
@@ -66,6 +67,7 @@ class ViewController: UIViewController
         
         self.bannerMiddle.timeInterval         = 1.1
         self.bannerMiddle.autoScrollDirection  = .Right
+        self.bannerMiddle.pageControlPosition  = .Right
         
 
     }
