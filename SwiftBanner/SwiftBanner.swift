@@ -11,8 +11,17 @@ import UIKit
 // MARK: - BannerItem
 public struct BannerItem
 {
-    public let imageFetcher: ((UIImageView) -> UIImage?)
-    public let action: (() -> ())?
+    public typealias BannerItemImageFetcher = (UIImageView -> UIImage?)
+    public typealias BannerItemAction = (Void -> Void)?
+    
+    public let imageFetcher: (UIImageView -> UIImage?)
+    public let action: BannerItemAction
+    
+    public init(imageFetcher: BannerItemImageFetcher, action: BannerItemAction = nil)
+    {
+        self.imageFetcher = imageFetcher
+        self.action = action
+    }
 }
 
 // MARK: - enum
