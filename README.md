@@ -1,6 +1,24 @@
+[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/SwiftBanner.svg)](https://img.shields.io/cocoapods/v/SwiftBanner.svg)
+[![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Platform](https://img.shields.io/cocoapods/p/SwiftBanner.svg?style=flat)](http://cocoadocs.org/docsets/SwiftBanner)
+
 # SwiftBanner
 
 A Cycle Banner by Swift
+
+## Requirements
+iOS8 or higher
+
+## Installations
+
+CocoaPods:
+```
+pod 'SwiftBanner'
+```
+Carthage:
+```
+github "tinyxx/SwiftBanner"
+```
 
 ## Usage
 
@@ -23,6 +41,7 @@ banner.bannerItems = [
         
         banner.timeInterval         = 2.8
         banner.autoScrollDirection  = .Left
+        banner.pageControlPosition  = .Left
 ```
 
 loading image from network:
@@ -47,7 +66,8 @@ banner.bannerItems = [
         ]
         
         banner.timeInterval         = 2.8
-        banner.autoScrollDirection  = .Left
+        banner.autoScrollDirection  = .Right
+        banner.pageControlPosition  = .Right
 ```
 
 For more infomation, please check the demo project, Thanks!
