@@ -13,7 +13,35 @@
 		297192741C2970F400F681B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 297192731C2970F400F681B6 /* Assets.xcassets */; };
 		297192771C2970F400F681B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 297192751C2970F400F681B6 /* LaunchScreen.storyboard */; };
 		297192801C29712800F681B6 /* SwiftBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2971927F1C29712800F681B6 /* SwiftBanner.swift */; };
+		29B7CDC11C31090B005FCFC3 /* SwiftBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 29B7CDC01C31090B005FCFC3 /* SwiftBanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29B7CDC51C31090B005FCFC3 /* SwiftBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B7CDBE1C31090B005FCFC3 /* SwiftBanner.framework */; };
+		29B7CDC61C31090B005FCFC3 /* SwiftBanner.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 29B7CDBE1C31090B005FCFC3 /* SwiftBanner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		29B7CDCB1C31092E005FCFC3 /* SwiftBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2971927F1C29712800F681B6 /* SwiftBanner.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		29B7CDC31C31090B005FCFC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 297192611C2970F400F681B6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29B7CDBD1C31090B005FCFC3;
+			remoteInfo = SwiftBanner;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		29B7CDCA1C31090B005FCFC3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				29B7CDC61C31090B005FCFC3 /* SwiftBanner.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		297192691C2970F400F681B6 /* SwiftBannerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftBannerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,10 +52,21 @@
 		297192761C2970F400F681B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		297192781C2970F400F681B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2971927F1C29712800F681B6 /* SwiftBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftBanner.swift; path = ../../SwiftBanner/SwiftBanner.swift; sourceTree = "<group>"; };
+		29B7CDBE1C31090B005FCFC3 /* SwiftBanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftBanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29B7CDC01C31090B005FCFC3 /* SwiftBanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftBanner.h; sourceTree = "<group>"; };
+		29B7CDC21C31090B005FCFC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		297192661C2970F400F681B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29B7CDC51C31090B005FCFC3 /* SwiftBanner.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29B7CDBA1C31090B005FCFC3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,6 +81,7 @@
 			children = (
 				2971927E1C29711A00F681B6 /* SwiftBanner */,
 				2971926B1C2970F400F681B6 /* SwiftBannerDemo */,
+				29B7CDBF1C31090B005FCFC3 /* SwiftBanner */,
 				2971926A1C2970F400F681B6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				297192691C2970F400F681B6 /* SwiftBannerDemo.app */,
+				29B7CDBE1C31090B005FCFC3 /* SwiftBanner.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,7 +117,27 @@
 			path = SwiftBannerDemo;
 			sourceTree = "<group>";
 		};
+		29B7CDBF1C31090B005FCFC3 /* SwiftBanner */ = {
+			isa = PBXGroup;
+			children = (
+				29B7CDC01C31090B005FCFC3 /* SwiftBanner.h */,
+				29B7CDC21C31090B005FCFC3 /* Info.plist */,
+			);
+			path = SwiftBanner;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		29B7CDBB1C31090B005FCFC3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29B7CDC11C31090B005FCFC3 /* SwiftBanner.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		297192681C2970F400F681B6 /* SwiftBannerDemo */ = {
@@ -86,15 +147,35 @@
 				297192651C2970F400F681B6 /* Sources */,
 				297192661C2970F400F681B6 /* Frameworks */,
 				297192671C2970F400F681B6 /* Resources */,
+				29B7CDCA1C31090B005FCFC3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				29B7CDC41C31090B005FCFC3 /* PBXTargetDependency */,
 			);
 			name = SwiftBannerDemo;
 			productName = SwiftBannerDemo;
 			productReference = 297192691C2970F400F681B6 /* SwiftBannerDemo.app */;
 			productType = "com.apple.product-type.application";
+		};
+		29B7CDBD1C31090B005FCFC3 /* SwiftBanner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29B7CDC91C31090B005FCFC3 /* Build configuration list for PBXNativeTarget "SwiftBanner" */;
+			buildPhases = (
+				29B7CDB91C31090B005FCFC3 /* Sources */,
+				29B7CDBA1C31090B005FCFC3 /* Frameworks */,
+				29B7CDBB1C31090B005FCFC3 /* Headers */,
+				29B7CDBC1C31090B005FCFC3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftBanner;
+			productName = SwiftBanner;
+			productReference = 29B7CDBE1C31090B005FCFC3 /* SwiftBanner.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -107,6 +188,9 @@
 				ORGANIZATIONNAME = tinyxx;
 				TargetAttributes = {
 					297192681C2970F400F681B6 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+					29B7CDBD1C31090B005FCFC3 = {
 						CreatedOnToolsVersion = 7.2;
 					};
 				};
@@ -125,6 +209,7 @@
 			projectRoot = "";
 			targets = (
 				297192681C2970F400F681B6 /* SwiftBannerDemo */,
+				29B7CDBD1C31090B005FCFC3 /* SwiftBanner */,
 			);
 		};
 /* End PBXProject section */
@@ -137,6 +222,13 @@
 				297192771C2970F400F681B6 /* LaunchScreen.storyboard in Resources */,
 				297192741C2970F400F681B6 /* Assets.xcassets in Resources */,
 				297192721C2970F400F681B6 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29B7CDBC1C31090B005FCFC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,7 +245,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		29B7CDB91C31090B005FCFC3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29B7CDCB1C31092E005FCFC3 /* SwiftBanner.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		29B7CDC41C31090B005FCFC3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29B7CDBD1C31090B005FCFC3 /* SwiftBanner */;
+			targetProxy = 29B7CDC31C31090B005FCFC3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		297192701C2970F400F681B6 /* Main.storyboard */ = {
@@ -260,8 +368,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = SwiftBannerDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tinyxx.SwiftBannerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -272,11 +381,54 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = SwiftBannerDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tinyxx.SwiftBannerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		29B7CDC71C31090B005FCFC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SwiftBanner/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tinyxx.SwiftBanner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		29B7CDC81C31090B005FCFC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SwiftBanner/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tinyxx.SwiftBanner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -300,6 +452,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		29B7CDC91C31090B005FCFC3 /* Build configuration list for PBXNativeTarget "SwiftBanner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29B7CDC71C31090B005FCFC3 /* Debug */,
+				29B7CDC81C31090B005FCFC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
